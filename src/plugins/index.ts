@@ -58,6 +58,16 @@ export const plugins: Plugin[] = [
   formBuilderPlugin({
     fields: {
       payment: false,
+      select: false,
+      country: false,
+      state: false,
+      date: false,
+      time: false,
+      color: false,
+      image: false,
+      file: false,
+      checkbox: false,
+      number: false,
     },
     formOverrides: {
       fields: ({ defaultFields }) => {
