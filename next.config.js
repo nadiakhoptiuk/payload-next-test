@@ -21,6 +21,7 @@ const nextConfig = {
         },
       ),
     ],
+    formats: ['image/webp'],
   },
   reactStrictMode: true,
   redirects,

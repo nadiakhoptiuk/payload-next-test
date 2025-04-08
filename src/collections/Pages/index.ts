@@ -19,7 +19,6 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
-import { PrimaryHero } from '@/blocks/PrimaryHero/config'
 import { hero } from '@/fields/hero'
 
 export const Pages: CollectionConfig<'pages'> = {
@@ -76,7 +75,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [PrimaryHero, CallToAction, Content, MediaBlock, Archive, FormBlock],
+              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock],
               required: true,
               admin: {
                 initCollapsed: true,

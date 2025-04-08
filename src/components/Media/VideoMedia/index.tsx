@@ -7,7 +7,9 @@ import type { Props as MediaProps } from '../types'
 
 import { getClientSideURL } from '@/utilities/getURL'
 
-export const VideoMedia: React.FC<MediaProps> = (props) => {
+export const VideoMedia: React.FC<
+  Omit<MediaProps, 'boxWidth' | 'boxHeight' | 'boxClassName' | 'rounded'>
+> = (props) => {
   const { onClick, resource, videoClassName } = props
 
   const videoRef = useRef<HTMLVideoElement>(null)

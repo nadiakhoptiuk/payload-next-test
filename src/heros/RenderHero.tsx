@@ -1,23 +1,22 @@
-// import React from 'react'
+import React from 'react'
 
-// import type { Page } from '@/payload-types'
+import type { Page } from '@/payload-types'
 
-// import { HighImpactHero } from '@/heros/HighImpact'
-// import { MediumImpactHero } from '@/heros/MediumImpact'
+import { PrimaryHero } from '@/heros/PrimaryHero'
 
-// const heroes = {
-//   highImpact: HighImpactHero,
-//   mediumImpact: MediumImpactHero,
-// }
+const heroes = {
+  primary: PrimaryHero,
+  secondary: PrimaryHero,
+}
 
-// export const RenderHero: React.FC<Page['hero']> = (props) => {
-//   const { type } = props || {}
+export const RenderHero: React.FC<Page['hero']> = (props) => {
+  const { type } = props || {}
 
-//   if (!type || type === 'none') return null
+  if (!type) return null
 
-//   const HeroToRender = heroes[type]
+  const HeroToRender = heroes[type]
 
-//   if (!HeroToRender) return null
+  if (!HeroToRender) return null
 
-//   return <HeroToRender {...props} />
-// }
+  return <HeroToRender {...props} />
+}
