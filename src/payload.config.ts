@@ -16,6 +16,7 @@ import { Header } from './Header/config'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
+import { Socials } from './common/Socials/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -36,22 +37,22 @@ export default buildConfig({
     user: Users.slug,
     livePreview: {
       breakpoints: [
-        {
-          label: 'Mobile',
-          name: 'mobile',
-          width: 375,
-          height: 667,
-        },
-        {
-          label: 'Tablet',
-          name: 'tablet',
-          width: 768,
-          height: 1024,
-        },
+        // {
+        //   label: 'Mobile',
+        //   name: 'mobile',
+        //   width: 375,
+        //   height: 667,
+        // },
+        // {
+        //   label: 'Tablet',
+        //   name: 'tablet',
+        //   width: 768,
+        //   height: 1024,
+        // },
         {
           label: 'Desktop',
           name: 'desktop',
-          width: 1440,
+          width: 1920,
           height: 900,
         },
       ],
@@ -66,7 +67,7 @@ export default buildConfig({
   }),
   collections: [Pages, Posts, Media, Categories, Users],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [Header, Footer],
+  globals: [Header, Footer, Socials],
   plugins: [
     ...plugins,
     // storage-adapter-placeholder
