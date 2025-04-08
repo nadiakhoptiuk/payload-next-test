@@ -47,14 +47,13 @@ export const ImageMedia: React.FC<ImageMediaProps> = (props) => {
       alt={alt || ''}
       className={cn(imgClassName)}
       placeholder="blur"
-      priority={priority ? true : false}
+      blurDataURL={placeholderBlur}
       quality={90}
-      loading={!priority ? 'lazy' : 'eager'}
       sizes={sizeFromProps || '100vw'}
       src={src}
       height={height}
       width={width}
-      {...(!staticMediaSrc && { blurDataURL: placeholderBlur })}
+      {...(!priority ? { priority: true } : { loading: 'lazy' })}
     />
   )
 }

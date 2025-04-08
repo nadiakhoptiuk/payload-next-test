@@ -1,7 +1,7 @@
 import type { Page } from '@/payload-types'
 import { cn } from '@/utilities/ui'
 import { Media } from '@/components/Media'
-import heroImage from 'public/media/homehero-1-1920x1054.jpg'
+import heroImage from '../../../public/media/homehero-1-1920x1054.jpg'
 
 export const PrimaryHero: React.FC<Page['hero']> = (props) => {
   const { title, description, image, localArtistBlock } = props
@@ -27,22 +27,16 @@ export const PrimaryHero: React.FC<Page['hero']> = (props) => {
         </div>
 
         {image && typeof image === 'object' && (
-          <Media
-            boxWidth={74}
-            boxHeight={40.625}
-            imgClassName={cn('border border-border rounded-[0.8rem]')}
-            resource={image}
-            priority
-          />
+          <Media boxWidth={74} boxHeight={40.625} resource={image} priority />
         )}
 
         {image && typeof image === 'object' && (
           <Media
             boxWidth={74}
             boxHeight={40.625}
-            imgClassName={cn('border border-border rounded-[0.8rem]')}
             staticMediaSrc={heroImage}
             staticMediaAlt={image.alt}
+            boxClassName="border-10 border-white"
             priority
           />
         )}

@@ -39,6 +39,7 @@ const MediaWrapper: React.FC<MediaWrapperProps> = ({
   return (
     <div
       className={cn(
+        'overflow-hidden',
         mediaWrapperVariants({ rounded }),
         className,
         `w-[${width}rem] h-[${height}rem]`,
