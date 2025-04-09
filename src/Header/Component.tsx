@@ -3,7 +3,7 @@ import { getCachedGlobal } from '@/utilities/getGlobals'
 import React from 'react'
 import configPromise from '@payload-config'
 
-import type { Header, Page, Social } from '@/payload-types'
+import type { Header, Social } from '@/payload-types'
 import { getPayload } from 'payload'
 
 export async function Header() {
@@ -17,16 +17,14 @@ export async function Header() {
     draft: false,
     pagination: false,
     overrideAccess: false,
-    // select: {
-    //   id: true,
-    //   title: true,
-    //   slug: true,
-    // },
+    select: {
+      id: true,
+      title: true,
+      slug: true,
+    },
   })
 
-  // return result.docs?.[0] || null
-  console.log('pagesData', pagesData.docs)
-  const pages = pagesData.docs
+  const pages = pagesData.docs // for select in Header Nav
 
-  return <HeaderClient data={headerData} socials={socialsData} />
+  return <HeaderClient data={headerData} socials={socialsData} pages={pages} />
 }

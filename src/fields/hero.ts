@@ -85,6 +85,7 @@ export const hero = () => {
       ],
       maxRows: 2,
       admin: {
+        condition: (_, siblingData) => siblingData?.type === 'primary',
         initCollapsed: true,
         components: {
           RowLabel: '@/Header/RowLabel#RowLabel',
