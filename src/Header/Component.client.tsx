@@ -9,10 +9,11 @@ import type { Header, Social } from '@/payload-types'
 
 import { Logo } from '@/components/Logo/Logo'
 import { HeaderNav } from './Nav'
+import { Socials } from '@/components/Socials'
 
 interface HeaderClientProps {
   data: Header
-  socials: Social
+  socials: Omit<Social, 'createdAt' | 'updatedAt'>
 }
 
 export const HeaderClient: React.FC<HeaderClientProps> = ({ data, socials }) => {
@@ -21,7 +22,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, socials }) => 
   const { headerTheme, setHeaderTheme } = useHeaderTheme()
   const pathname = usePathname()
 
-  console.log(socials.socialLinks)
+  const socialLinks = socials.socialLinks
 
   useEffect(() => {
     setHeaderTheme(null)
@@ -34,12 +35,17 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, socials }) => 
   }, [headerTheme])
 
   return (
-    <header className="container relative z-20" {...(theme ? { 'data-theme': theme } : {})}>
+    <header
+      className="container relative z-20 bg-yellow-500"
+      {...(theme ? { 'data-theme': theme } : {})}
+    >
       <div className="py-8 flex justify-between">
         <Link href="/">
           <Logo loading="eager" priority="high" className="invert dark:invert-0" />
         </Link>
         <HeaderNav data={data} />
+
+        {socialLinks && socialLinks.length > 0 && <Socials socials={socialLinks} variant="light" />}
       </div>
     </header>
   )

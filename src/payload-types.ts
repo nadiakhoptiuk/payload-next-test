@@ -155,6 +155,9 @@ export interface Page {
     title: string;
     subtitle?: string | null;
     description?: string | null;
+    /**
+     * Please upload an image with horizontal orientation. At least 2300px width and 1200px height.
+     */
     image?: (number | null) | Media;
     localArtistBlock?: {
       title: string;
@@ -1275,6 +1278,8 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   createdAt?: T;
 }
 /**
+ * Manage the website header
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header".
  */
@@ -1304,6 +1309,8 @@ export interface Header {
   createdAt?: string | null;
 }
 /**
+ * Manage the website footer
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "footer".
  */
@@ -1333,6 +1340,8 @@ export interface Footer {
   createdAt?: string | null;
 }
 /**
+ * Manage the website social links
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "socials".
  */
@@ -1341,7 +1350,7 @@ export interface Social {
   socialLinks?:
     | {
         socialLink: {
-          type?: ('facebook' | 'instagram' | 'twitter' | 'youtube') | null;
+          type?: ('facebook' | 'instagram' | 'twitter' | 'youtube' | 'linkedin') | null;
           url: string;
         };
         id?: string | null;

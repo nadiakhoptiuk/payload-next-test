@@ -6,13 +6,16 @@ export const Socials: GlobalConfig = {
   access: {
     read: () => true,
   },
+  admin: {
+    description: 'Manage the website social links',
+  },
   fields: [
     {
       name: 'socialLinks',
       type: 'array',
       label: 'Social Links',
       fields: [socialLink],
-      maxRows: 4,
+      maxRows: 5,
       admin: {
         initCollapsed: true,
         components: {

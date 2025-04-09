@@ -1,5 +1,4 @@
 import type { Page } from '@/payload-types'
-import { cn } from '@/utilities/ui'
 import { Media } from '@/components/Media'
 import heroImage from '../../../public/media/homehero-1-1920x1054.jpg'
 

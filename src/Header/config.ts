@@ -8,6 +8,9 @@ export const Header: GlobalConfig = {
   access: {
     read: () => true,
   },
+  admin: {
+    description: 'Manage the website header',
+  },
   fields: [
     {
       name: 'navItems',

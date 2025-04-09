@@ -2,7 +2,7 @@ import { cn } from '@/utilities/ui'
 import { type VariantProps, cva } from 'class-variance-authority'
 import * as React from 'react'
 
-const mediaWrapperVariants = cva('', {
+const mediaWrapperVariants = cva('overflow-hidden', {
   defaultVariants: {
     rounded: '20',
   },
@@ -39,10 +39,9 @@ const MediaWrapper: React.FC<MediaWrapperProps> = ({
   return (
     <div
       className={cn(
-        'overflow-hidden',
+        `w-[${width}rem] h-[${height}rem]`,
         mediaWrapperVariants({ rounded }),
         className,
-        `w-[${width}rem] h-[${height}rem]`,
       )}
       {...props}
     />

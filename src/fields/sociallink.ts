@@ -32,6 +32,10 @@ export const socialLink: GroupField = {
               label: 'Youtube',
               value: 'youtube',
             },
+            {
+              label: 'LinkedIn',
+              value: 'linkedin',
+            },
           ],
         },
       ],

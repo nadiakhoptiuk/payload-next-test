@@ -79,6 +79,8 @@ export const hero = () => {
       type: 'upload',
       admin: {
         condition: (_, siblingData) => siblingData?.type === 'primary',
+        description:
+          'Please upload an image with horizontal orientation. At least 2300px width and 1200px height.',
       },
       relationTo: 'media',
       label: 'Big Image',
