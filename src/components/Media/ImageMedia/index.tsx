@@ -45,7 +45,7 @@ export const ImageMedia: React.FC<ImageMediaProps> = (props) => {
   return (
     <NextImage
       alt={alt || ''}
-      className={cn(imgClassName)}
+      className={cn('w-full h-full object-cover object-center', imgClassName)}
       placeholder="blur"
       blurDataURL={placeholderBlur}
       quality={90}

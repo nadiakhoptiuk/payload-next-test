@@ -1,9 +1,11 @@
 import type { Page } from '@/payload-types'
 import { Media } from '@/components/Media'
-import heroImage from '../../../public/media/homehero-1-1920x1054.jpg'
+import heroImage from 'public/media/homehero-1-1920x1054.jpg'
 
 export const PrimaryHero: React.FC<Page['hero']> = (props) => {
   const { title, description, image, localArtistBlock } = props
+
+  console.log(props)
 
   return (
     <section>
@@ -29,7 +31,7 @@ export const PrimaryHero: React.FC<Page['hero']> = (props) => {
           <Media boxWidth={74} boxHeight={40.625} resource={image} priority />
         )}
 
-        {image && typeof image === 'object' && (
+        {/* {image && typeof image === 'object' && (
           <Media
             boxWidth={74}
             boxHeight={40.625}
@@ -38,7 +40,7 @@ export const PrimaryHero: React.FC<Page['hero']> = (props) => {
             boxClassName="border-10 border-white"
             priority
           />
-        )}
+        )} */}
 
         {localArtistBlock && (
           <div className="w-[74rem] h-[40.625rem]">

@@ -1,5 +1,6 @@
 import tailwindcssAnimate from 'tailwindcss-animate'
 import typography from '@tailwindcss/typography'
+import plugin from 'tailwindcss/plugin'
 
 /** @type {import('tailwindcss').Config} */
 const config = {
@@ -17,7 +18,6 @@ const config = {
     'lg:col-span-6',
     'lg:col-span-8',
     'lg:col-span-12',
-    'border-border',
     'bg-card',
     'border-error',
     'bg-error/30',
@@ -30,124 +30,81 @@ const config = {
     container: {
       center: true,
       padding: {
-        '2xl': '2rem',
-        DEFAULT: '1rem',
-        lg: '2rem',
-        md: '2rem',
-        sm: '1rem',
-        xl: '2rem',
+        '2xl': '9.375rem',
+        // DEFAULT: '1rem',
+        // lg: '2rem',
+        // md: '2rem',
+        // sm: '1rem',
+        // xl: '2rem',
       },
       screens: {
-        '2xl': '86rem',
-        lg: '64rem',
-        md: '48rem',
-        sm: '40rem',
-        xl: '80rem',
+        // sm: '40rem',
+        // md: '48rem',
+        // lg: '64rem',
+        // xl: '80rem',
+        '2xl': '120rem',
       },
     },
+
+    borderRadius: {
+      10: '0.625rem', // 10px
+      20: '1.25rem', // 20px
+      30: '1.875rem', // 30px
+      195: '12.188rem', // 195px
+      full: '9999px',
+    },
+
     extend: {
-      animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
-      },
-      borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
-      },
+      // animation: {
+      //   'accordion-down': 'accordion-down 0.2s ease-out',
+      //   'accordion-up': 'accordion-up 0.2s ease-out',
+      // },
+
       colors: {
         accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
+          DEFAULT: '#AA7446',
+          light: '#DBA860',
+          dark: '#2B0A0A',
         },
-        background: 'hsl(var(--background))',
-        border: 'hsla(var(--border))',
-        card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
+        black: '#000000',
+        dark: '#1A3A37',
+        gray: '#494949',
+        muted: '#929292',
+        yellow: '#FFB300',
+        white: '#FFFFFF',
+        background: {
+          gray: '#F2F2F2',
+          light: 'rgba(170, 116, 70, 0.1)',
+          input: 'rgba(193, 167, 140, 0.2)',
+          accordion: '#CCB363',
+          'accordion-light': 'rgba(204, 179, 99, 0.2)',
+          calendar: 'rgba(169, 156, 111, 0.2)',
         },
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
+        border: {
+          acordion: '#C1A78C',
+          calendar: '#D4CBC2',
+          line: '#C6C6C6',
         },
-        foreground: 'hsl(var(--foreground))',
-        input: 'hsl(var(--input))',
-        muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
+        icon: {
+          gray: '#9A9A9A',
         },
-        popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
-        },
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
-        },
-        ring: 'hsl(var(--ring))',
-        secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
-        },
-        success: 'hsl(var(--success))',
-        error: 'hsl(var(--error))',
-        warning: 'hsl(var(--warning))',
+
+        // success: 'hsl(var(--success))',
+        // error: 'hsl(var(--error))',
+        // warning: 'hsl(var(--warning))',
       },
+
       fontFamily: {
-        mono: ['var(--font-geist-mono)'],
-        sans: ['var(--font-geist-sans)'],
+        marcellus: ['var(--font-marcellus)'],
+        mirza: ['var(--font-mirza)'],
       },
-      keyframes: {
-        'accordion-down': {
-          from: { height: '0' },
-          to: { height: 'var(--radix-accordion-content-height)' },
-        },
-        'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0' },
-        },
-      },
-      typography: () => ({
-        DEFAULT: {
-          css: [
-            {
-              '--tw-prose-body': 'var(--text)',
-              '--tw-prose-headings': 'var(--text)',
-              h1: {
-                fontWeight: 'normal',
-                marginBottom: '0.25em',
-              },
-            },
-          ],
-        },
-        base: {
-          css: [
-            {
-              h1: {
-                fontSize: '2.5rem',
-              },
-              h2: {
-                fontSize: '1.25rem',
-                fontWeight: 600,
-              },
-            },
-          ],
-        },
-        md: {
-          css: [
-            {
-              h1: {
-                fontSize: '3.5rem',
-              },
-              h2: {
-                fontSize: '1.5rem',
-              },
-            },
-          ],
-        },
-      }),
     },
   },
+  plugins: [
+    plugin(function ({ addVariant }) {
+      addVariant('hocus', ['&:hover', '&:focus'])
+    }),
+  ],
 }
 
 export default config

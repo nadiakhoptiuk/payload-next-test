@@ -85,11 +85,8 @@
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
   body {
-    @apply bg-background text-foreground min-h-[100vh] flex flex-col;
+    @apply bg-white text-black min-h-[100vh] flex flex-col font-marcellus;
   }
 }
 

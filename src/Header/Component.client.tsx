@@ -36,7 +36,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, socials }) => 
 
   return (
     <header
-      className="container relative z-20 bg-yellow-500"
+      className="container relative z-20 bg-white text-white"
       {...(theme ? { 'data-theme': theme } : {})}
     >
       <div className="py-8 flex justify-between">
@@ -45,7 +45,9 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, socials }) => 
         </Link>
         <HeaderNav data={data} />
 
-        {socialLinks && socialLinks.length > 0 && <Socials socials={socialLinks} variant="light" />}
+        {socialLinks && socialLinks.length > 0 && (
+          <Socials socials={socialLinks} variant="default" />
+        )}
       </div>
     </header>
   )

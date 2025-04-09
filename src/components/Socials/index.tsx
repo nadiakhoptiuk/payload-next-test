@@ -1,49 +1,32 @@
 import { Social } from '@/payload-types'
-import { SocialLink, SocialLinkVariant } from '../ui/socialLink'
-import { cva } from 'class-variance-authority'
+import { SocialLink, SocialLinkSize, SocialLinkVariant } from '../ui/socialLink'
+import { Fragment } from 'react'
 import { cn } from '@/utilities/ui'
 
 type SocialsProps = {
   socials: Social['socialLinks']
   variant: SocialLinkVariant
-  size?: 'default' | 'sm'
-  className?: string
+  size?: SocialLinkSize
+  listClassName?: string
 }
 
-const socialLinkVariants = cva('', {
-  defaultVariants: {
-    size: 'default',
-    variant: 'default',
-  },
-  variants: {
-    size: {
-      default: 'h-[1.31rem] w-[1.31rem]',
-      sm: 'h-5 w-5',
-    },
-    variant: {
-      default: 'bg-transparent',
-      light: 'rounded-full bg-white',
-      dark: 'rounded-full bg-black',
-    },
-  },
-})
-
-export const Socials = ({ socials, variant, size, className }: SocialsProps) => {
+export const Socials = ({ socials, variant, size, listClassName }: SocialsProps) => {
   return (
-    <ul className="flex gap-4">
+    <ul className={cn('flex gap-4 h-fit', listClassName)}>
       {socials &&
         socials.length > 0 &&
         socials.map(({ id, socialLink }) => (
-          <li key={id} className={cn(socialLinkVariants({ size, variant, className }))}>
+          <Fragment key={id}>
             {socialLink.type && (
               <SocialLink
                 url={socialLink.url}
                 type={socialLink.type}
+                size={size}
                 variant={variant}
                 className=""
               />
             )}
-          </li>
+          </Fragment>
         ))}
     </ul>
   )
