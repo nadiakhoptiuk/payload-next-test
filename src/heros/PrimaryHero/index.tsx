@@ -1,29 +1,35 @@
 import type { Page } from '@/payload-types'
 import { Media } from '@/components/Media'
-import heroImage from 'public/media/homehero-1-1920x1054.jpg'
+// import heroImage from 'public/media/homehero-1-1920x1054.jpg'
+import { CMSLink } from '@/components/Link'
 
 export const PrimaryHero: React.FC<Page['hero']> = (props) => {
-  const { title, description, image, localArtistBlock } = props
-
-  console.log(props)
+  const { title, description, image, localArtistBlock, buttons } = props
 
   return (
     <section>
       <div className="container">
+        <ul className="flex items-center gap-4">
+          {/* STATIC BUTTONS */}
+          {/* <Button variant="accent" size="xs" asChild>
+            <Link href="/contact">Contact Us</Link>
+          </Button>
+
+          <Button>Contact Us</Button> */}
+
+          {/* DYNAMIC BUTTONS */}
+          {buttons?.map((button) => (
+            <li key={button.id}>
+              <CMSLink {...button.link} />
+            </li>
+          ))}
+        </ul>
+
         <div className="">
           <h1 className="max-w-[48rem] flex items-center">{title}</h1>
 
           <div className="max-w-[48rem] flex items-center">
             <p>{description}</p>
-
-            {/* <ul>
-              <li>
-                <button>{localArtistBlock.blockRate}</button>
-              </li>
-              <li>
-                <button>{localArtistBlock.blockRate}</button>
-              </li>
-            </ul> */}
           </div>
         </div>
 
@@ -31,6 +37,7 @@ export const PrimaryHero: React.FC<Page['hero']> = (props) => {
           <Media boxWidth={74} boxHeight={40.625} resource={image} priority />
         )}
 
+        {/* STATIC IMAGE */}
         {/* {image && typeof image === 'object' && (
           <Media
             boxWidth={74}

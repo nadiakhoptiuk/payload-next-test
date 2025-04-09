@@ -71,6 +71,7 @@ const config = {
         gray: '#494949',
         muted: '#929292',
         yellow: '#FFB300',
+        mustard: '#A99C6F',
         white: '#FFFFFF',
         background: {
           gray: '#F2F2F2',

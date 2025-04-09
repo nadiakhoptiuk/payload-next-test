@@ -1,4 +1,5 @@
 import type { Field, GroupField } from 'payload'
+import { link } from './link'
 
 export type LinkAppearances = 'default' | 'outline'
 
@@ -73,6 +74,23 @@ export const hero = () => {
       },
       label: 'Description',
       required: true,
+    },
+    {
+      name: 'buttons',
+      type: 'array',
+      fields: [
+        link({
+          appearances: ['accent', 'dark', 'white', 'light'],
+        }),
+      ],
+      maxRows: 2,
+      admin: {
+        initCollapsed: true,
+        components: {
+          RowLabel: '@/Header/RowLabel#RowLabel',
+        },
+      },
+      required: false,
     },
     {
       name: 'image',
