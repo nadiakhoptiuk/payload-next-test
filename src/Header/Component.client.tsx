@@ -10,6 +10,7 @@ import type { Header, Page, Social } from '@/payload-types'
 import { Logo } from '@/components/Logo/Logo'
 import { HeaderNav } from './Nav'
 import { Socials } from '@/components/Socials'
+import { AudioPlayer } from '@/components/AudioPlayer'
 
 interface HeaderClientProps {
   data: Header
@@ -51,6 +52,8 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, socials, pages
           <Socials socials={socialLinks} variant="default" />
         )}
       </div>
+
+      <AudioPlayer />
     </header>
   )
 }

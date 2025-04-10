@@ -24,7 +24,6 @@ export const PrimaryHero: React.FC<Page['hero']> = (props) => {
             </li>
           ))}
         </ul>
-
         <div className="">
           <h1 className="max-w-[48rem] flex items-center">{title}</h1>
 
@@ -32,11 +31,9 @@ export const PrimaryHero: React.FC<Page['hero']> = (props) => {
             <p>{description}</p>
           </div>
         </div>
-
         {image && typeof image === 'object' && (
           <Media boxWidth={74} boxHeight={40.625} resource={image} priority />
         )}
-
         {/* STATIC IMAGE */}
         {/* {image && typeof image === 'object' && (
           <Media
@@ -48,7 +45,6 @@ export const PrimaryHero: React.FC<Page['hero']> = (props) => {
             priority
           />
         )} */}
-
         {localArtistBlock && (
           <div className="w-[74rem] h-[40.625rem]">
             <h2>{localArtistBlock.title}</h2>
