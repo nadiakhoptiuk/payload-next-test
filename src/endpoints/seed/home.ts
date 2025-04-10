@@ -26,7 +26,45 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
         ratingCaption: 'Building Bonds Blessings',
       },
     },
-    layout: [],
+    layout: [
+      {
+        id: '67f7c6e2d9844e0266837df3',
+        richText: {
+          root: {
+            children: [
+              {
+                children: [
+                  {
+                    detail: 0,
+                    format: 0,
+                    mode: 'normal',
+                    style: '',
+                    text: 'Test',
+                    type: 'text',
+                    version: 1,
+                  },
+                ],
+                direction: 'ltr',
+                format: '',
+                indent: 0,
+                type: 'paragraph',
+                version: 1,
+                textFormat: 0,
+                textStyle: '',
+              },
+            ],
+            direction: 'ltr',
+            format: '',
+            indent: 0,
+            type: 'root',
+            version: 1,
+          },
+        },
+        blockName: null,
+        links: [],
+        blockType: 'cta',
+      },
+    ],
     meta: { title: null, image: null, description: null },
     slug: 'home',
     _status: 'published',

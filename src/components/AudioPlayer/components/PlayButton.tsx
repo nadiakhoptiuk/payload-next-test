@@ -12,11 +12,14 @@ export const PlayButton = ({ playing, handleToggle, className }: Props) => {
     <button
       onClick={handleToggle}
       className={cn(
-        'flex items-center justify-center bg-light rounded-full w-14 h-14 pl-5 pr-3',
+        'flex items-center justify-center bg-light rounded-full w-14 h-14 pl-3 pr-3',
+        {
+          'pl-5': !playing,
+        },
         className,
       )}
     >
-      {playing ? <ICONS.play width={24} height={24} /> : <ICONS.play width={24} height={24} />}
+      {playing ? <ICONS.pause width={24} height={24} /> : <ICONS.play width={24} height={24} />}
     </button>
   )
 }

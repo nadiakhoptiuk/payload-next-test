@@ -17,11 +17,11 @@ export async function Header() {
     draft: false,
     pagination: false,
     overrideAccess: false,
-    select: {
-      id: true,
-      title: true,
-      slug: true,
-    },
+    // select: {
+    //   id: true,
+    //   title: true,
+    //   slug: true,
+    // },
   })
 
   const pages = pagesData.docs // for select in Header Nav
