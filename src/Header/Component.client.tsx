@@ -53,7 +53,9 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, socials, pages
         )}
       </div>
 
-      <AudioPlayer />
+      <div className="w-[800px]">
+        <AudioPlayer />
+      </div>
     </header>
   )
 }

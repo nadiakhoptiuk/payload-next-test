@@ -73,6 +73,7 @@ const config = {
         yellow: '#FFB300',
         mustard: '#A99C6F',
         white: '#FFFFFF',
+        light: '#D9D9D9',
         background: {
           gray: '#F2F2F2',
           light: 'rgba(170, 116, 70, 0.1)',
@@ -85,6 +86,7 @@ const config = {
           acordion: '#C1A78C',
           calendar: '#D4CBC2',
           line: '#C6C6C6',
+          player: '#D0D0D0',
         },
         icon: {
           gray: '#9A9A9A',

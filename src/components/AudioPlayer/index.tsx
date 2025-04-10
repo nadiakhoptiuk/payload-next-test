@@ -1,8 +1,12 @@
 'use client'
 
 import raf from 'raf'
-import React, { useRef, useState, useEffect, useCallback, ChangeEvent } from 'react'
+import React, { useRef, useState, useEffect, useCallback } from 'react'
 import ReactHowler from 'react-howler'
+import { ICONS } from '../ui/icons/icons'
+import { formatPlayerSeekTime } from '@/utilities/formatPlayerSeekTime'
+import { RangeInput } from './components/RangeInput'
+import { PlayButton } from './components/PlayButton'
 
 type AudioPlayerProps = {
   src?: string
@@ -51,18 +55,17 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
     setIsSeeking(true)
   }
 
-  const handleMouseUpSeek = (e: React.MouseEvent<HTMLInputElement>) => {
+  const handleMouseUpSeek = (value: number) => {
     setIsSeeking(false)
-    const seekValue = parseFloat(e.currentTarget.value)
-    playerRef.current?.seek(seekValue)
-    setSeek(seekValue)
+    if (playerRef.current) {
+      playerRef.current.seek(value)
+    }
   }
 
-  const handleSeekingChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const seekValue = parseFloat(e.currentTarget.value)
-    setSeek(seekValue)
+  const handleSeekingChange = (value: number) => {
+    setSeek(value)
     if (playerRef.current) {
-      playerRef.current.seek(seekValue)
+      playerRef.current.seek(value)
     }
   }
 
@@ -88,7 +91,9 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
     <>
       {!loaded && <p>Loading...</p>}
 
-      <div className={`${loaded ? 'block' : 'hidden'}`}>
+      <div
+        className={`${loaded ? 'bg-accent flex items-center w-full py-[1.38rem] pl-8 pr-6 border-[1px] border-solid border-border-player' : 'hidden'}`}
+      >
         <ReactHowler
           src={src}
           playing={playing}
@@ -101,47 +106,41 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           ref={playerRef}
         />
 
-        <p>
-          {'Status: '}
-          {seek.toFixed(2)} / {duration ? duration.toFixed(2) : 'NaN'}
-        </p>
+        <PlayButton playing={playing} handleToggle={handleToggle} className="mr-8" />
 
-        <div className="volume">
-          <label>
-            Volume:
-            <span className="slider-container">
-              <input
-                type="range"
-                min="0"
-                max="1"
-                step=".05"
-                value={volume}
-                onChange={(e) => setVolume(parseFloat(e.target.value))}
-              />
-            </span>
-            {volume.toFixed(2)}
-          </label>
+        <div className="flex items-center flex-1 gap-4">
+          <span className="text-white min-w-[3.44rem]">{formatPlayerSeekTime(seek)}</span>
+
+          <RangeInput
+            min={0}
+            max={duration || 0}
+            step={0.01}
+            value={seek}
+            onChange={handleSeekingChange}
+            onMouseDown={handleMouseDownSeek}
+            onMouseUp={handleMouseUpSeek}
+            className="flex-1"
+            ariaLabel="Progress"
+          />
+
+          <span className="text-white min-w-[3rem]">
+            {duration ? formatPlayerSeekTime(duration) : '--:--'}
+          </span>
         </div>
+        <div className="flex items-center justify-center gap-[0.38rem] ml-4">
+          <ICONS.volume width={24} height={20} />
 
-        <div className="seek">
-          <label>
-            Seek:
-            <span className="slider-container">
-              <input
-                type="range"
-                min="0"
-                max={duration ? duration.toFixed(2) : '0'}
-                step=".01"
-                value={seek}
-                onChange={handleSeekingChange}
-                onMouseDown={handleMouseDownSeek}
-                onMouseUp={handleMouseUpSeek}
-              />
-            </span>
-          </label>
+          <span className="w-[6.88rem]">
+            <RangeInput
+              min={0}
+              max={1}
+              step={0.05}
+              value={volume}
+              onChange={(value) => setVolume(value)}
+              ariaLabel="Volume"
+            />
+          </span>
         </div>
-
-        <button onClick={handleToggle}>{playing ? 'Pause' : 'Play'}</button>
       </div>
     </>
   )
