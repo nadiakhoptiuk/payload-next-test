@@ -17,6 +17,7 @@ import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
 import { Socials } from './common/Socials/config'
+import { Team } from './common/Team/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -67,7 +68,7 @@ export default buildConfig({
   }),
   collections: [Pages, Posts, Media, Categories, Users],
   cors: [getServerSideURL(), 'http://192.168.56.101:3000'].filter(Boolean),
-  globals: [Header, Footer, Socials],
+  globals: [Header, Footer, Socials, Team],
   plugins: [
     ...plugins,
     // storage-adapter-placeholder

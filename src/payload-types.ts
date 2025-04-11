@@ -104,11 +104,13 @@ export interface Config {
     header: Header;
     footer: Footer;
     socials: Social;
+    team: Team;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     socials: SocialsSelect<false> | SocialsSelect<true>;
+    team: TeamSelect<false> | TeamSelect<true>;
   };
   locale: null;
   user: User & {
@@ -190,7 +192,7 @@ export interface Page {
       ratingCaption: string;
     };
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (TeamBlock | CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -336,6 +338,30 @@ export interface User {
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TeamBlock".
+ */
+export interface TeamBlock {
+  /**
+   * Enable title editing
+   */
+  editTitle?: boolean | null;
+  title?: string | null;
+  /**
+   * Enable subtitle editing
+   */
+  editSubtitle?: boolean | null;
+  subtitle?: string | null;
+  /**
+   * Enable description editing
+   */
+  editDescription?: boolean | null;
+  description?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'team';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -918,6 +944,7 @@ export interface PagesSelect<T extends boolean = true> {
   layout?:
     | T
     | {
+        team?: T | TeamBlockSelect<T>;
         cta?: T | CallToActionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
@@ -937,6 +964,20 @@ export interface PagesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TeamBlock_select".
+ */
+export interface TeamBlockSelect<T extends boolean = true> {
+  editTitle?: T;
+  title?: T;
+  editSubtitle?: T;
+  subtitle?: T;
+  editDescription?: T;
+  description?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1407,9 +1448,40 @@ export interface Social {
   socialLinks?:
     | {
         socialLink: {
-          type?: ('facebook' | 'instagram' | 'twitter' | 'youtube' | 'linkedin') | null;
+          type: 'facebook' | 'instagram' | 'twitter' | 'youtube';
           url: string;
         };
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Manage the team members
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team".
+ */
+export interface Team {
+  id: number;
+  title: string;
+  subtitle: string;
+  description: string;
+  members?:
+    | {
+        photo: number | Media;
+        name: string;
+        position: string;
+        socialLinks?:
+          | {
+              socialLink: {
+                type: 'facebook' | 'instagram' | 'twitter' | 'youtube' | 'linkedin';
+                url: string;
+              };
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
       }[]
     | null;
@@ -1475,6 +1547,37 @@ export interface SocialsSelect<T extends boolean = true> {
           | {
               type?: T;
               url?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team_select".
+ */
+export interface TeamSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  description?: T;
+  members?:
+    | T
+    | {
+        photo?: T;
+        name?: T;
+        position?: T;
+        socialLinks?:
+          | T
+          | {
+              socialLink?:
+                | T
+                | {
+                    type?: T;
+                    url?: T;
+                  };
+              id?: T;
             };
         id?: T;
       };

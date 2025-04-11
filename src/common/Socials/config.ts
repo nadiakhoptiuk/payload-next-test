@@ -14,7 +14,7 @@ export const Socials: GlobalConfig = {
       name: 'socialLinks',
       type: 'array',
       label: 'Social Links',
-      fields: [socialLink],
+      fields: [socialLink()],
       maxRows: 5,
       admin: {
         initCollapsed: true,

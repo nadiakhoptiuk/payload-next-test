@@ -20,6 +20,7 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 import { hero } from '@/fields/hero'
+import { TeamBlock } from '@/blocks/Team/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -75,7 +76,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock],
+              blocks: [TeamBlock, CallToAction, Content, MediaBlock, Archive, FormBlock],
               required: true,
               admin: {
                 initCollapsed: true,

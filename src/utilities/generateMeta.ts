@@ -22,8 +22,6 @@ const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
 export const generateMeta = (args: { doc: Partial<Page> | Partial<Post> | null }): Metadata => {
   const { doc } = args
 
-  console.log('doc', doc)
-
   const ogImage = getImageURL(doc?.meta?.image)
 
   const title = doc?.meta?.title ? doc?.meta?.title : 'Payload Website Template'
