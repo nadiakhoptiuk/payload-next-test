@@ -45,19 +45,13 @@ type Args = {
 
 export default async function Page({ params: paramsPromise }: Args) {
   const { isEnabled: draft } = await draftMode()
-  const { slug = 'home' } = await paramsPromise
-  const url = '/' + slug
+  const { slug } = await paramsPromise
 
-  let page: RequiredDataFromCollectionSlug<'pages'> | null
-
-  page = await queryPageBySlug({
-    slug,
+  const page: RequiredDataFromCollectionSlug<'pages'> | null = await queryPageBySlug({
+    slug: slug || 'home',
   })
 
-  // Remove this code once your website is seeded
-  if (!page && slug === 'home') {
-    page = homeStatic
-  }
+  const url = '/' + slug
 
   if (!page) {
     return <PayloadRedirects url={url} />
