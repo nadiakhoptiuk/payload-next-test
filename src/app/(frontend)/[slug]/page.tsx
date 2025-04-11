@@ -5,7 +5,6 @@ import configPromise from '@payload-config'
 import { getPayload, type RequiredDataFromCollectionSlug } from 'payload'
 import { draftMode } from 'next/headers'
 import React, { cache } from 'react'
-import { homeStatic } from '@/endpoints/seed/home-static'
 
 import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { generateMeta } from '@/utilities/generateMeta'
@@ -79,7 +78,9 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
     slug,
   })
 
-  return generateMeta({ doc: page })
+  const meta = generateMeta({ doc: page })
+
+  return meta
 }
 
 const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {

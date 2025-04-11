@@ -1,10 +1,10 @@
 import type { CollectionConfig } from 'payload'
 
-import {
-  FixedToolbarFeature,
-  InlineToolbarFeature,
-  lexicalEditor,
-} from '@payloadcms/richtext-lexical'
+// import {
+//   FixedToolbarFeature,
+//   InlineToolbarFeature,
+//   lexicalEditor,
+// } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -60,12 +60,12 @@ export const Media: CollectionConfig = {
       //   name: 'xlarge',
       //   width: 1920,
       // },
-      // {
-      //   name: 'og',
-      //   width: 1200,
-      //   height: 630,
-      //   crop: 'center',
-      // },
+      {
+        name: 'og',
+        width: 1200,
+        height: 630,
+        crop: 'center',
+      },
     ],
   },
 }

@@ -65,7 +65,12 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
         blockType: 'cta',
       },
     ],
-    meta: { title: null, image: null, description: null },
+    meta: {
+      title: 'Home | Richmond Arts Corridor',
+      image: heroImage.id,
+      description:
+        'Description: This should be between 100 and 150 characters. For help in writing quality meta descriptions, see best practices',
+    },
     slug: 'home',
     _status: 'published',
   }
