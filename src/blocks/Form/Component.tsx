@@ -123,8 +123,11 @@ export const FormBlock: React.FC<
           {!isLoading && hasSubmitted && confirmationType === 'message' && (
             <RichText data={confirmationMessage} />
           )}
+
           {isLoading && !hasSubmitted && <p>Loading, please wait...</p>}
+
           {error && <div>{`${error.status || '500'}: ${error.message || ''}`}</div>}
+
           {!hasSubmitted && (
             <form id={formID} onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-4 last:mb-0">
@@ -133,6 +136,7 @@ export const FormBlock: React.FC<
                   formFromProps.fields?.map((field, index) => {
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     const Field: React.FC<any> = fields?.[field.blockType as keyof typeof fields]
+
                     if (Field) {
                       return (
                         <div className="mb-6 last:mb-0" key={index}>
@@ -147,11 +151,12 @@ export const FormBlock: React.FC<
                         </div>
                       )
                     }
+
                     return null
                   })}
               </div>
 
-              <Button form={formID} type="submit" variant="default">
+              <Button form={formID} type="submit">
                 {submitButtonLabel}
               </Button>
             </form>

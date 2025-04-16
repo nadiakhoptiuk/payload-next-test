@@ -1,22 +1,31 @@
 import { getCachedGlobal } from '@/utilities/getGlobals'
+import type { TeamBlock as TeamBlockProps } from '@/payload-types'
+import { DataFromGlobalSlug } from 'payload'
 
-export type TeamBlockProps = {
-  editTitle: boolean
-  editSubtitle: boolean
-  editDescription: boolean
-  title?: string
-  subtitle?: string
-  description?: string
-}
-
-export const TeamBlock: React.FC<TeamBlockProps> = async () => {
-  const members = await getCachedGlobal('team', 1)()
-
-  console.log('members', members)
+export const TeamBlock: React.FC<TeamBlockProps> = async (props) => {
+  const data = await getCachedGlobal('team', 1)()
+  const members = data as DataFromGlobalSlug<'team'>
 
   return (
     <div className="container">
-      <div className="bg-card rounded border-border border p-4 flex flex-col gap-8 md:flex-row md:justify-between md:items-center"></div>
+      <div className="grid grid-cols-3 gap-8">
+        <div>
+          <p>Title: </p>
+          <p>{props.title && props.editTitle ? props.title : members.title}</p>
+        </div>
+
+        <div>
+          <p>Subtitle: </p>
+          <p>{props.subtitle && props.editSubtitle ? props.subtitle : members.subtitle}</p>
+        </div>
+
+        <div>
+          <p>Description: </p>
+          <p>
+            {props.description && props.editDescription ? props.description : members.description}
+          </p>
+        </div>
+      </div>
     </div>
   )
 }

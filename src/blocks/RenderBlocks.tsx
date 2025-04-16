@@ -1,21 +1,41 @@
 import React, { Fragment } from 'react'
 
-import type { Page } from '@/payload-types'
+import type {
+  ArchiveBlock,
+  CallToActionBlock,
+  ContentBlock,
+  MediaBlock,
+  Page,
+  TeamBlock,
+} from '@/payload-types'
 
-import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
-import { CallToActionBlock } from '@/blocks/CallToAction/Component'
-import { ContentBlock } from '@/blocks/Content/Component'
-import { FormBlock } from '@/blocks/Form/Component'
-import { MediaBlock } from '@/blocks/MediaBlock/Component'
-import { TeamBlock } from '@/blocks/Team/Component'
+import { ArchiveBlock as ArchiveBlockComponent } from '@/blocks/ArchiveBlock/Component'
+import { CallToActionBlock as CallToActionBlockComponent } from '@/blocks/CallToAction/Component'
+import { ContentBlock as ContentBlockComponent } from '@/blocks/Content/Component'
+import { FormBlock as FormBlockComponent, FormBlockType } from '@/blocks/Form/Component'
+import { MediaBlock as MediaBlockComponent } from '@/blocks/MediaBlock/Component'
+import { TeamBlock as TeamBlockComponent } from '@/blocks/Team/Component'
 
-const blockComponents = {
-  archive: ArchiveBlock,
-  content: ContentBlock,
-  cta: CallToActionBlock,
-  formBlock: FormBlock,
-  mediaBlock: MediaBlock,
-  team: TeamBlock,
+type RequiredId<T> = Omit<T, 'id'> & { id?: string }
+
+interface BlockPropsMap {
+  archive: RequiredId<ArchiveBlock>
+  content: RequiredId<ContentBlock>
+  cta: RequiredId<CallToActionBlock>
+  formBlock: RequiredId<FormBlockType>
+  mediaBlock: RequiredId<MediaBlock>
+  team: TeamBlock
+}
+
+const blockComponents: {
+  [K in keyof BlockPropsMap]: React.FC<BlockPropsMap[K]>
+} = {
+  archive: ArchiveBlockComponent,
+  content: ContentBlockComponent,
+  cta: CallToActionBlockComponent,
+  formBlock: FormBlockComponent,
+  mediaBlock: MediaBlockComponent,
+  team: TeamBlockComponent,
 }
 
 export const RenderBlocks: React.FC<{
@@ -32,10 +52,10 @@ export const RenderBlocks: React.FC<{
           const { blockType } = block
 
           if (blockType && blockType in blockComponents) {
-            const Block = blockComponents[blockType]
+            const Block = blockComponents[blockType] as React.FC
 
             if (Block) {
-              return <Block key={index} {...block} disableInnerContainer /> //TODO fix types
+              return <Block key={index} {...block} />
             }
           }
           return null
